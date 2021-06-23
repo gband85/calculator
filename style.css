@@ -1,0 +1,84 @@
+.btn-group {
+    display: grid;
+    width: 320px;
+    border: 5px solid black;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .btn {
+    width: 80px;
+    height: 80px;
+    font-size: large;
+  }
+  
+  #displayScreen {
+    color: white;
+    height: 70px;
+    width: 320px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    font-family: "Digital-7 Mono";
+    padding: 5px;
+    align-items: flex-end;
+  }
+  
+  #display {
+    color: white;
+    height: 45px;
+    width: 320px;
+    font-size: 40px;
+    text-align: right;
+    align-items: flex-end;
+  }
+  
+  #formula {
+    height: 35px;
+    color: orange;
+    font-size: 25px;
+  }
+  
+  #equals {
+    width: 80px;
+    background-color: green;
+    grid-row: 4/6;
+    grid-column: 4/5;
+  }
+  
+  .btn-tall {
+    height: 160px;
+  }
+  
+  .btn-wide {
+    width: 160px;
+  }
+  
+  #container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    min-height: min-content;
+    flex-direction: column;
+  }
+  
+  #clear {
+    grid-column: 1/3;
+    background-color: red;
+  }
+  
+  #zero {
+    grid-column: 1/3;
+  }
+  
+  @font-face {
+    font-family: digital-7 mono;
+    font-style: normal;
+    font-weight: 400;
+    src: local("Digital-7 Mono"), url(./digital-7.ttf) format("truetype");
+  }
+  
+  html {
+    background-color: slategrey;
+  }
