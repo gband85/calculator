@@ -52,3 +52,27 @@ const calc = {
   
   equals.addEventListener("click", function () {
   });
+
+  //add function to process number input
+  function inputNumber(btnVal) {
+      //if operator has been entered
+    if (calc.operatorEntered === true) {
+        //overwrite bottom line
+      calc.displayString = btnVal;
+      //add to formula on top line
+      calc.formulaString += btnVal;
+      //reset operator entered variable
+      calc.operatorEntered = false;
+    } else {
+        //otherwise, if display is zeroed out
+      if (calc.displayString == "0") {
+          //overwrite both lines
+        calc.displayString = btnVal;
+        calc.formulaString = btnVal;
+      } else {
+//otherwise, concatenate value onto both lines
+        calc.formulaString += btnVal;
+        calc.displayString += btnVal;
+      }
+    }
+  }
