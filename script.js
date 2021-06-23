@@ -76,3 +76,13 @@ const calc = {
       }
     }
   }
+
+  //add function to process decimal input
+  function inputDecimal(btnVal) {
+      //if displayString does not contain a decimal
+    if (!calc.displayString.includes(btnVal)) {
+        //add decimal onto both lines
+      calc.displayString += btnVal;
+      calc.formulaString += btnVal;
+    }
+  }
