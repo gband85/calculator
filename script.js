@@ -25,3 +25,30 @@ const calc = {
   
     operatorEntered: false
   };
+
+  //add event listeners to take input from buttons
+  numbers.forEach(element => {
+    element.addEventListener("click", function () {
+    });
+  });
+  
+  decimal.addEventListener("click", function () {
+  });
+  
+  add.addEventListener("click", function () {
+  });
+  
+  subtract.addEventListener("click", function () {
+  });
+  
+  divide.addEventListener("click", function () {
+  });
+  
+  multiply.addEventListener("click", function () {
+  });
+  
+  clear.addEventListener("click", function () {
+  });
+  
+  equals.addEventListener("click", function () {
+  });
