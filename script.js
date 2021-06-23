@@ -141,4 +141,9 @@ const calc = {
     calc.firstOperand = y;
     calc.equalsPressed = true;
   }
-  
+
+  //add function to update display on button press
+  function updateDisplay() {
+    display.innerHTML = calc.displayString;
+    formula.innerHTML = calc.formulaString;
+  }
