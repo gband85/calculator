@@ -129,3 +129,16 @@ const calc = {
     //add to formula
     calc.formulaString += btnVal;
   }
+
+  //add function to evaluate formula
+  function calculateResult() {
+    let x = calc.formulaString;
+  
+    let y = Function('"use strict";return (' + x + ")")();
+  
+    calc.displayString = y;
+    calc.formulaString += "=" + y;
+    calc.firstOperand = y;
+    calc.equalsPressed = true;
+  }
+  
