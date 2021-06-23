@@ -147,3 +147,14 @@ const calc = {
     display.innerHTML = calc.displayString;
     formula.innerHTML = calc.formulaString;
   }
+
+  //add function to process clear button
+  function clearDisplay() {
+    calc.displayString = "0";
+  
+    calc.firstOperand = null;
+  
+    calc.operatorEntered = false;
+    calc.formulaString = "";
+    calc.equalsPressed = false;
+  }
