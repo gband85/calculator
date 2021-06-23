@@ -158,3 +158,9 @@ const calc = {
     calc.formulaString = "";
     calc.equalsPressed = false;
   }
+
+  //execute clear and update display functions on page load
+  window.onload = function () {
+    clearDisplay();
+    updateDisplay();
+  };
