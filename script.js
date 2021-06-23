@@ -86,3 +86,46 @@ const calc = {
       calc.formulaString += btnVal;
     }
   }
+
+  //add function to handle operators
+  function handleOperator(btnVal) {
+    console.log(calc.formulaString);
+    console.log(/[+*\/-]{1}-{1}/.test(calc.formulaString));
+    //if formula line contains two operators, one being a minus
+    if (/[+*\/-]{1}-{1}/.test(calc.formulaString)) {
+        //replace whole string with a minus
+      calc.formulaString = calc.formulaString.replace(/[+*\/-]{1}-{1}/g, btnVal);
+      return;
+    }
+  //if an operator has been entered,
+    if (calc.operatorEntered) {
+        //and if the operator pressed is a minus,
+      if (btnVal == "-") {
+          //add it to the formula
+        calc.formulaString += btnVal;
+  
+        return;
+      } else {
+          //otherwise, replace operator at end of formula with entered operator
+        calc.formulaString = calc.formulaString.replace(
+        calc.formulaString.charAt(calc.formulaString.length - 1),
+        btnVal);
+  
+        return;
+      }
+    }
+  //if equals operator has been pressed,
+    if (calc.equalsPressed === true) {
+        //add result of calculation to current formula
+      calc.formulaString = calc.firstOperand + btnVal;
+      //set equals pressed to false
+      calc.equalsPressed = false;
+      //set operator entered to true
+      calc.operatorEntered = true;
+      return;
+    }
+  //otherwise, declare operator entered
+    calc.operatorEntered = true;
+    //add to formula
+    calc.formulaString += btnVal;
+  }
