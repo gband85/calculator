@@ -29,28 +29,44 @@ const calc = {
   //add event listeners to take input from buttons
   numbers.forEach(element => {
     element.addEventListener("click", function () {
+    inputNumber(element.value);
+    updateDisplay();
     });
   });
   
   decimal.addEventListener("click", function () {
+    inputDecimal(decimal.value);
+    updateDisplay();
   });
   
   add.addEventListener("click", function () {
+    handleOperator(add.value);
+    updateDisplay();
   });
   
   subtract.addEventListener("click", function () {
+    handleOperator(subtract.value);
+    updateDisplay();
   });
   
   divide.addEventListener("click", function () {
+    handleOperator(divide.value);
+    updateDisplay();
   });
   
   multiply.addEventListener("click", function () {
+    handleOperator(multiply.value);
+    updateDisplay();
   });
   
   clear.addEventListener("click", function () {
+    clearDisplay();
+    updateDisplay();
   });
   
   equals.addEventListener("click", function () {
+    calculateResult();
+    updateDisplay();
   });
 
   //add function to process number input
