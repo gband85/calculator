@@ -18,11 +18,9 @@ var plus_minus = document.getElementById("plus_minus");
 //create object to hold calculation data
 const calc = {
     displayString: "0",
-    formulaString: "",
-  
+    formulaString: "",  
     firstOperand: null,
-    equalsPressed: false,
-  
+    equalsPressed: false,  
     operatorEntered: false
   };
 
