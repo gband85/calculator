@@ -144,16 +144,18 @@ const calc = {
     calc.formulaString += btnVal;
   }
 
-  //add function to evaluate formula
-  function calculateResult() {
-    let x = calc.formulaString;
-  
-    let y = Function('"use strict";return (' + x + ")")();
-  
-    calc.displayString = y;
-    calc.formulaString += "=" + y;
-    calc.firstOperand = y;
-    calc.equalsPressed = true;
+  //add functions to evaluate
+  function add(firstOperand,secondOperand) {
+    return Number(firstOperand) + Number(secondOperand);
+  }
+  function subtract(firstOperand,operator,secondOperand) {
+    return Number(firstOperand) - Number(secondOperand);
+  }
+  function multiply(firstOperand,operator,secondOperand) {
+    return Number(firstOperand) * Number(secondOperand);
+  }
+  function divide(firstOperand,operator,secondOperand) {
+    return Number(firstOperand) / Number(secondOperand);
   }
 
   //add function to update display on button press
