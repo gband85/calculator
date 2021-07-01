@@ -178,3 +178,6 @@ const calc = {
     clearDisplay();
     updateDisplay();
   };
+
+  //set operatorEntered to operator, not true false
+  //if two operands + operator exist, perform calculation on next operator press
