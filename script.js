@@ -91,7 +91,7 @@ const calc = {
   let equalsButton = document.getElementById("equals");
   let clearButton = document.getElementById("clear");
   let display = document.getElementById("display");
-  let formula = document.getElementById("formula");
+  //let formula = document.getElementById("formula");
   // Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a letiable somewhere for use in the next step.
 
   //add event listeners to take input from buttons
