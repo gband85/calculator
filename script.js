@@ -114,12 +114,13 @@ const calc = {
   //if an operator has been entered,
     if (calc.operatorEntered) {
         //and if the operator pressed is a minus,
-      if (btnVal == "-") {
-          //add it to the formula
-        calc.formulaString += btnVal;
+      // if (btnVal == "-") {
+      //     //add it to the formula
+      //   calc.formulaString += btnVal;
   
-        return;
-      } else {
+      //   return;
+      // } 
+      if (btnVal!==operatorEntered) {
           //otherwise, replace operator at end of formula with entered operator
         calc.formulaString = calc.formulaString.replace(
         calc.formulaString.charAt(calc.formulaString.length - 1),
@@ -127,6 +128,28 @@ const calc = {
   
         return;
       }
+
+      if (calc.firstOperand) {
+        if (calc.secondOperand) {
+          //if first operand and second operand and operator exists, calculate the result
+          switch (calc.operator) {
+            case "+":
+              add(calc.firstOperand,calc.secondOperand);
+              break;
+          
+          case "-":
+            subtract(calc.firstOperand,calc.secondOperand);
+            break;
+            case "*":
+              multiply(calc.firstOperand,calc.secondOperand);
+              break;
+      case "/":
+        divide(calc.firstOperand,calc.secondOperand);
+        break;
+          }
+        }
+      }
+
     }
   //if equals operator has been pressed,
     if (calc.equalsPressed === true) {
