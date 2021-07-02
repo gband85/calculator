@@ -55,7 +55,14 @@ const calc = {
     //calculate the result
     switch (operator) {
       case "+":
-        add(firstOperand, secondOperand);
+        //perform operation
+        let result=add(firstOperand, secondOperand);
+        //display result
+      display.textContent=  result;
+      //set to first operand
+      calc.firstOperand=result;
+      calc.secondOperand="";
+
         break;
   
       case "-":
@@ -118,11 +125,14 @@ equalsButton.addEventListener("click", function () {
   function inputNumber(buttonValue) {
       //if display is zeroed out
     if (display.textContent == "0") {
-        //overwrite
+      // save entered value
         calc.firstOperand = buttonValue;
+        //overwrite display
         display.textContent = buttonValue;
     } 
+    //otherwise, if operator has been pressed
     else if (calc.operator) {
+    //  and if secondOperand does not exist
       if (!calc.secondOperand) {
   calc.secondOperand=buttonValue;
   display.textContent=buttonValue;
@@ -144,11 +154,20 @@ display.textContent += buttonValue;
 
 function inputOperator(buttonValue) {
   if (calc.firstOperand) {
+  if (calc.operator) {
+if (calc.secondOperand) {
+ operate(calc.firstOperand,calc.operator,calc.secondOperand);
+//  console.log(result);
+//  display.textContent=result;
+}
+  }
+
   calc.operator = buttonValue;
   }
   else {
 
   }
+
 } 
 
   // Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
