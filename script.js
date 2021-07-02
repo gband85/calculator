@@ -21,28 +21,14 @@ const calc = {
   
   // decimal.addEventListener("click", function () {
   //   inputDecimal(decimal.value);
-  //   updateDisplay();
+  //  updateDisplay();
   // });
 
-  //add function to handle operators
-
-
-
-  //add functions to evaluate
-  
-    
-
-
-  //add function to update display on button press
-  function updateDisplay() {
-    display.innerHTML = calc.displayString;
-    formula.innerHTML = calc.formulaString;
-  }
 
   //add function to process clear button
   function clearDisplay() {
     calc.displayString = "0";
-  
+  display.textContent="0"
     calc.firstOperand = null;
   
     calc.operatorEntered = false;
@@ -53,7 +39,7 @@ const calc = {
   //execute clear and update display functions on page load
   window.onload = function () {
     clearDisplay();
-    updateDisplay();
+   
   };
   // Here are some use cases (abilities your project needs to have):
 
@@ -112,52 +98,41 @@ const calc = {
 numberButtons.forEach(numberButton => {
   numberButton.addEventListener("click", function () {
   inputNumber(numberButton.value);
-  updateDisplay();
-  });
+    });
 });
 
 addButton.addEventListener("click", function () {
   handleOperator(add.value);
-  updateDisplay();
-});
+  });
 
 subtractButton.addEventListener("click", function () {
   handleOperator(subtract.value);
-  updateDisplay();
-});
+  });
 
 divideButton.addEventListener("click", function () {
   handleOperator(divide.value);
-  updateDisplay();
-});
+  });
 
 multiplyButton.addEventListener("click", function () {
   handleOperator(multiply.value);
-  updateDisplay();
-});
+  });
 
 clearButton.addEventListener("click", function () {
   clearDisplay();
-  updateDisplay();
-});
+  });
 
 equalsButton.addEventListener("click", function () {
   calculateResult();
-  updateDisplay();
-});
+  });
 
   function inputNumber(buttonValue) {
-    //if operator has been entered
-
-      //otherwise, if display is zeroed out
-    if (calc.displayString == "0") {
-        //overwrite both lines
-      calc.displayString = buttonValue;
-      calc.formulaString = buttonValue;
+      //if display is zeroed out
+    if (display.textContent == "0") {
+        //overwrite
+        display.textContent = buttonValue;
     } else {
-//otherwise, concatenate value onto both lines
-      calc.formulaString += buttonValue;
-      calc.displayString += buttonValue;
+//otherwise, concatenate value
+      display.textContent += buttonValue;
     }  
 }
 
