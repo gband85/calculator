@@ -33,10 +33,10 @@ const calc = {
     });
   });
   
-  decimal.addEventListener("click", function () {
-    inputDecimal(decimal.value);
-    updateDisplay();
-  });
+  // decimal.addEventListener("click", function () {
+  //   inputDecimal(decimal.value);
+  //   updateDisplay();
+  // });
   
   addButton.addEventListener("click", function () {
     handleOperator(add.value);
@@ -70,72 +70,29 @@ const calc = {
 
   //add function to process number input
   function inputNumber(btnVal) {
-      //if operator has been entered
-    if (calc.operatorEntered === true) {
-        //overwrite bottom line
-      calc.displayString = btnVal;
-      //add to formula on top line
-      calc.formulaString += btnVal;
-      //reset operator entered variable
-      calc.operatorEntered = false;
-    } else {
-        //otherwise, if display is zeroed out
-      if (calc.displayString == "0") {
-          //overwrite both lines
-        calc.displayString = btnVal;
-        calc.formulaString = btnVal;
-      } else {
-//otherwise, concatenate value onto both lines
-        calc.formulaString += btnVal;
-        calc.displayString += btnVal;
-      }
-    }
-  }
 
-  //add function to process decimal input
-  function inputDecimal(btnVal) {
-      //if displayString does not contain a decimal
-    if (!calc.displayString.includes(btnVal)) {
-        //add decimal onto both lines
-      calc.displayString += btnVal;
-      calc.formulaString += btnVal;
-    }
   }
 
   //add function to handle operators
-  function operate(firstOperand,operator,secondOperand) {
-          //if first operand and second operand and operator exists, calculate the result
-          switch (operator) {
-            case "+":
-              add(firstOperand,secondOperand);
-              break;
-          
-          case "-":
-            subtract(firstOperand,secondOperand);
-            break;
-            case "*":
-              multiply(firstOperand,secondOperand);
-              break;
-      case "/":
-        divide(firstOperand,secondOperand);
-        break;
-          }
-    }
-  // //if equals operator has been pressed,
-  //   if (calc.equalsPressed === true) {
-  //       //add result of calculation to current formula
-  //     calc.formulaString = calc.firstOperand + btnVal;
-  //     //set equals pressed to false
-  //     calc.equalsPressed = false;
-  //     //set operator entered to true
-  //     calc.operatorEntered = true;
-  //     return;
-  //   }
-  // //otherwise, declare operator entered
-  //   calc.operatorEntered = true;
-  //   //add to formula
-  //   calc.formulaString += btnVal;
-  // }
+function operate(firstOperand, operator, secondOperand) {
+  //calculate the result
+  switch (operator) {
+    case "+":
+      add(firstOperand, secondOperand);
+      break;
+
+    case "-":
+      subtract(firstOperand, secondOperand);
+      break;
+    case "*":
+      multiply(firstOperand, secondOperand);
+      break;
+    case "/":
+      divide(firstOperand, secondOperand);
+      break;
+  }
+}
+
 
   //add functions to evaluate
   function add(firstOperand,secondOperand) {
