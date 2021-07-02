@@ -19,9 +19,10 @@ var plus_minus = document.getElementById("plus_minus");
 const calc = {
     displayString: "0",
     formulaString: "",  
-    firstOperand: null,
-    equalsPressed: false,  
-    operatorEntered: false
+    firstOperand: "",
+    secondOperand: "",
+    operator: "",
+    equalsPressed: false    
   };
 
   //add event listeners to take input from buttons
