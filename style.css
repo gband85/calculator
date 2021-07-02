@@ -13,7 +13,7 @@
   
   #displayScreen {
     color: white;
-    height: 70px;
+    height: 45px;
     width: 320px;
     background-color: black;
     display: flex;
@@ -26,7 +26,7 @@
   
   #display {
     color: white;
-    height: 45px;
+    height: 40px;
     width: 320px;
     font-size: 40px;
     text-align: right;
