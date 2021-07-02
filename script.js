@@ -17,23 +17,13 @@ const calc = {
     equalsPressed: false    
   };
 
-  
-  
-  // decimal.addEventListener("click", function () {
-  //   inputDecimal(decimal.value);
-  //  updateDisplay();
-  // });
-
-
   //add function to process clear button
   function clearDisplay() {
-    calc.displayString = "0";
-  display.textContent="0"
-    calc.firstOperand = null;
-  
-    calc.operatorEntered = false;
-    calc.formulaString = "";
-    calc.equalsPressed = false;
+  display.textContent = "0"
+  calc.firstOperand = "";
+  calc.secondOperand = ""
+  calc.operator = "";
+  calc.equalsPressed = false;
   }
 
   //execute clear and update display functions on page load
@@ -92,7 +82,7 @@ const calc = {
   let clearButton = document.getElementById("clear");
   let display = document.getElementById("display");
   //let formula = document.getElementById("formula");
-  // Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a letiable somewhere for use in the next step.
+  // Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
 
   //add event listeners to take input from buttons
 numberButtons.forEach(numberButton => {
@@ -102,19 +92,19 @@ numberButtons.forEach(numberButton => {
 });
 
 addButton.addEventListener("click", function () {
-  handleOperator(add.value);
+  inputOperator(add.value);
   });
 
 subtractButton.addEventListener("click", function () {
-  handleOperator(subtract.value);
+  inputOperator(subtract.value);
   });
 
 divideButton.addEventListener("click", function () {
-  handleOperator(divide.value);
+  inputOperator(divide.value);
   });
 
 multiplyButton.addEventListener("click", function () {
-  handleOperator(multiply.value);
+  inputOperator(multiply.value);
   });
 
 clearButton.addEventListener("click", function () {
@@ -135,6 +125,10 @@ equalsButton.addEventListener("click", function () {
       display.textContent += buttonValue;
     }  
 }
+
+function inputOperator(buttonValue) {
+  calc.operator = buttonValue;
+} 
 
   // Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
   // You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
