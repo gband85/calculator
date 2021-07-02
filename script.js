@@ -52,28 +52,49 @@ const calc = {
   }
   // Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
   function operate(firstOperand, operator, secondOperand) {
+    let result;
     //calculate the result
     switch (operator) {
       case "+":
-        //perform operation
-        let result=add(firstOperand, secondOperand);
-        //display result
+      //perform operation
+      result=add(firstOperand, secondOperand);
+      //display result
       display.textContent=  result;
       //set to first operand
       calc.firstOperand=result;
       //clear second operand
       calc.secondOperand="";
-
-        break;
+      break;
   
       case "-":
-        subtract(firstOperand, secondOperand);
+        //perform operation
+      result = subtract(firstOperand, secondOperand);
+      //display result
+      display.textContent=  result;
+      //set to first operand
+      calc.firstOperand=result;
+      //clear second operand
+      calc.secondOperand="";
         break;
       case "*":
-        multiply(firstOperand, secondOperand);
+        //perform operation
+      result = multiply(firstOperand, secondOperand);
+      //display result
+      display.textContent=  result;
+      //set to first operand
+      calc.firstOperand=result;
+      //clear second operand
+      calc.secondOperand="";
         break;
       case "/":
-        divide(firstOperand, secondOperand);
+        //perform operation
+       result = divide(firstOperand, secondOperand);
+       //display result
+      display.textContent=  result;
+      //set to first operand
+      calc.firstOperand=result;
+      //clear second operand
+      calc.secondOperand="";
         break;
     }
   }
