@@ -1,9 +1,6 @@
 let btnVal;
 //grab elements
-let display = document.getElementById("display");
 
-
-let formula = document.getElementById("formula");
 let formulaString;
 
 let decimal = document.querySelector("#decimal");
@@ -20,53 +17,12 @@ const calc = {
     equalsPressed: false    
   };
 
-  //add event listeners to take input from buttons
-  numberButtons.forEach(numberButton => {
-    numberButton.addEventListener("click", function () {
-    inputNumber(numberButton.value);
-    updateDisplay();
-    });
-  });
+  
   
   // decimal.addEventListener("click", function () {
   //   inputDecimal(decimal.value);
   //   updateDisplay();
   // });
-  
-  addButton.addEventListener("click", function () {
-    handleOperator(add.value);
-    updateDisplay();
-  });
-  
-  subtractButton.addEventListener("click", function () {
-    handleOperator(subtract.value);
-    updateDisplay();
-  });
-  
-  divideButton.addEventListener("click", function () {
-    handleOperator(divide.value);
-    updateDisplay();
-  });
-  
-  multiplyButton.addEventListener("click", function () {
-    handleOperator(multiply.value);
-    updateDisplay();
-  });
-  
-  clearButton.addEventListener("click", function () {
-    clearDisplay();
-    updateDisplay();
-  });
-  
-  equalsButton.addEventListener("click", function () {
-    calculateResult();
-    updateDisplay();
-  });
-
-  //add function to process number input
-  function inputNumber(btnVal) {
-
-  }
 
   //add function to handle operators
 
@@ -148,7 +104,63 @@ const calc = {
   let divideButton = document.querySelector("#divide");
   let equalsButton = document.getElementById("equals");
   let clearButton = document.getElementById("clear");
+  let display = document.getElementById("display");
+  let formula = document.getElementById("formula");
   // Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a letiable somewhere for use in the next step.
+
+  //add event listeners to take input from buttons
+numberButtons.forEach(numberButton => {
+  numberButton.addEventListener("click", function () {
+  inputNumber(numberButton.value);
+  updateDisplay();
+  });
+});
+
+addButton.addEventListener("click", function () {
+  handleOperator(add.value);
+  updateDisplay();
+});
+
+subtractButton.addEventListener("click", function () {
+  handleOperator(subtract.value);
+  updateDisplay();
+});
+
+divideButton.addEventListener("click", function () {
+  handleOperator(divide.value);
+  updateDisplay();
+});
+
+multiplyButton.addEventListener("click", function () {
+  handleOperator(multiply.value);
+  updateDisplay();
+});
+
+clearButton.addEventListener("click", function () {
+  clearDisplay();
+  updateDisplay();
+});
+
+equalsButton.addEventListener("click", function () {
+  calculateResult();
+  updateDisplay();
+});
+
+  function inputNumber(buttonValue) {
+    //if operator has been entered
+
+      //otherwise, if display is zeroed out
+    if (calc.displayString == "0") {
+        //overwrite both lines
+      calc.displayString = buttonValue;
+      calc.formulaString = buttonValue;
+    } else {
+//otherwise, concatenate value onto both lines
+      calc.formulaString += buttonValue;
+      calc.displayString += buttonValue;
+    }  
+}
+
   // Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
   // You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
   // This is the hardest part of the project. You need to figure out how to store all the values and call the operate function with them. Don’t feel bad if it takes you a while to figure out the logic.
