@@ -61,6 +61,7 @@ const calc = {
       display.textContent=  result;
       //set to first operand
       calc.firstOperand=result;
+      //clear second operand
       calc.secondOperand="";
 
         break;
@@ -157,15 +158,11 @@ function inputOperator(buttonValue) {
   if (calc.operator) {
 if (calc.secondOperand) {
  operate(calc.firstOperand,calc.operator,calc.secondOperand);
-//  console.log(result);
-//  display.textContent=result;
+
 }
   }
 
   calc.operator = buttonValue;
-  }
-  else {
-
   }
 
 } 
