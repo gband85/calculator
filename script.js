@@ -103,70 +103,39 @@ const calc = {
   }
 
   //add function to handle operators
-  function handleOperator(btnVal) {
-    console.log(calc.formulaString);
-    console.log(/[+*\/-]{1}-{1}/.test(calc.formulaString));
-    //if formula line contains two operators, one being a minus
-    if (/[+*\/-]{1}-{1}/.test(calc.formulaString)) {
-        //replace whole string with a minus
-      calc.formulaString = calc.formulaString.replace(/[+*\/-]{1}-{1}/g, btnVal);
-      return;
-    }
-  //if an operator has been entered,
-    if (calc.operatorEntered) {
-        //and if the operator pressed is a minus,
-      // if (btnVal == "-") {
-      //     //add it to the formula
-      //   calc.formulaString += btnVal;
-  
-      //   return;
-      // } 
-      if (btnVal!==operatorEntered) {
-          //otherwise, replace operator at end of formula with entered operator
-        calc.formulaString = calc.formulaString.replace(
-        calc.formulaString.charAt(calc.formulaString.length - 1),
-        btnVal);
-  
-        return;
-      }
-
-      if (calc.firstOperand) {
-        if (calc.secondOperand) {
+  function operate(firstOperand,operator,secondOperand) {
           //if first operand and second operand and operator exists, calculate the result
-          switch (calc.operator) {
+          switch (operator) {
             case "+":
-              add(calc.firstOperand,calc.secondOperand);
+              add(firstOperand,secondOperand);
               break;
           
           case "-":
-            subtract(calc.firstOperand,calc.secondOperand);
+            subtract(firstOperand,secondOperand);
             break;
             case "*":
-              multiply(calc.firstOperand,calc.secondOperand);
+              multiply(firstOperand,secondOperand);
               break;
       case "/":
-        divide(calc.firstOperand,calc.secondOperand);
+        divide(firstOperand,secondOperand);
         break;
           }
-        }
-      }
-
     }
-  //if equals operator has been pressed,
-    if (calc.equalsPressed === true) {
-        //add result of calculation to current formula
-      calc.formulaString = calc.firstOperand + btnVal;
-      //set equals pressed to false
-      calc.equalsPressed = false;
-      //set operator entered to true
-      calc.operatorEntered = true;
-      return;
-    }
-  //otherwise, declare operator entered
-    calc.operatorEntered = true;
-    //add to formula
-    calc.formulaString += btnVal;
-  }
+  // //if equals operator has been pressed,
+  //   if (calc.equalsPressed === true) {
+  //       //add result of calculation to current formula
+  //     calc.formulaString = calc.firstOperand + btnVal;
+  //     //set equals pressed to false
+  //     calc.equalsPressed = false;
+  //     //set operator entered to true
+  //     calc.operatorEntered = true;
+  //     return;
+  //   }
+  // //otherwise, declare operator entered
+  //   calc.operatorEntered = true;
+  //   //add to formula
+  //   calc.formulaString += btnVal;
+  // }
 
   //add functions to evaluate
   function add(firstOperand,secondOperand) {
