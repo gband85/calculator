@@ -58,45 +58,27 @@ const calc = {
       case "+":
       //perform operation
       result=add(firstOperand, secondOperand);
-      //display result
-      display.textContent=  result;
-      //set to first operand
-      calc.firstOperand=result;
-      //clear second operand
-      calc.secondOperand="";
-      break;
-  
+      break;  
       case "-":
         //perform operation
       result = subtract(firstOperand, secondOperand);
-      //display result
-      display.textContent=  result;
-      //set to first operand
-      calc.firstOperand=result;
-      //clear second operand
-      calc.secondOperand="";
-        break;
+      break;
       case "*":
         //perform operation
       result = multiply(firstOperand, secondOperand);
-      //display result
-      display.textContent=  result;
-      //set to first operand
-      calc.firstOperand=result;
-      //clear second operand
-      calc.secondOperand="";
-        break;
+      break;
       case "/":
         //perform operation
        result = divide(firstOperand, secondOperand);
-       //display result
-      display.textContent=  result;
-      //set to first operand
-      calc.firstOperand=result;
-      //clear second operand
-      calc.secondOperand="";
-        break;
+       break;
     }
+     //display result
+     display.textContent=  result;
+     //set to first operand
+     calc.firstOperand=result;
+     //clear second operand
+     calc.secondOperand="";
+     calc.operator="";
   }
   // Create a basic HTML calculator with buttons for each digit, each of the above functions and an “Equals” key.
   // Do not worry about wiring up the JS just yet.
@@ -125,15 +107,15 @@ addButton.addEventListener("click", function () {
   });
 
 subtractButton.addEventListener("click", function () {
-  inputOperator(subtract.value);
+  inputOperator(subtractButton.value);
   });
 
 divideButton.addEventListener("click", function () {
-  inputOperator(divide.value);
+  inputOperator(divideButton.value);
   });
 
 multiplyButton.addEventListener("click", function () {
-  inputOperator(multiply.value);
+  inputOperator(multiplyButton.value);
   });
 
 clearButton.addEventListener("click", function () {
@@ -141,7 +123,13 @@ clearButton.addEventListener("click", function () {
   });
 
 equalsButton.addEventListener("click", function () {
-  calculateResult();
+if (calc.firstOperand && calc.operator && calc.secondOperand) {
+  operate(calc.firstOperand,calc.operator,calc.secondOperand);
+}
+if (calc.firstOperand && calc.operator && !calc.secondOperand && display.textContent) {
+  calc.secondOperand=display.textContent;
+  operate(calc.firstOperand,calc.operator,calc.secondOperand);
+}
   });
 
   function inputNumber(buttonValue) {
@@ -156,16 +144,18 @@ equalsButton.addEventListener("click", function () {
     else if (calc.operator) {
     //  and if secondOperand does not exist
       if (!calc.secondOperand) {
+        //secondOperand equals button value
   calc.secondOperand=buttonValue;
+  //display it
   display.textContent=buttonValue;
       }
-      else {
-        calc.secondOperand+=buttonValue;
+  else {
+calc.secondOperand+=buttonValue;
 display.textContent += buttonValue;
 return;
       }
 }
-    else {
+  else {
 //otherwise, concatenate value
 calc.firstOperand+=buttonValue;
 display.textContent += buttonValue;
