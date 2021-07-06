@@ -46,6 +46,12 @@ function divide(firstOperand, secondOperand) {
 // Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(firstOperand, operator, secondOperand) {
   let result;
+  if (firstOperand=="0" && operator=="/" && secondOperand=="0") {
+    result="U wot mate?";
+    display.textContent=result;
+
+  }
+else {
   //calculate the result
   switch (operator) {
     case "+":
@@ -65,10 +71,11 @@ function operate(firstOperand, operator, secondOperand) {
       result = divide(firstOperand, secondOperand);
       break;
   }
-  //display result
-  display.textContent = result;
-  //set to first operand
-  calc.firstOperand = result;
+    //display result
+  display.textContent = Math.round((result + Number.EPSILON) * 1000000) / 1000000;
+  calc.firstOperand = Math.round((result + Number.EPSILON) * 1000000) / 1000000;
+}
+
   //clear second operand
   calc.secondOperand = "";
   calc.operator = "";
@@ -155,6 +162,10 @@ function inputNumber(buttonValue) {
 }
 
 function inputOperator(buttonValue) {
+
+  if (display.textContent == "0") {
+  calc.firstOperand=display.textContent
+  }
   if (calc.firstOperand) {
     if (calc.operator) {
       if (calc.secondOperand) {
