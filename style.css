@@ -10,7 +10,9 @@
     height: 80px;
     font-size: large;
   }
-  
+  .operator {
+    background-color: dodgerblue;
+  }
   #displayScreen {
     color: white;
     height: 45px;
