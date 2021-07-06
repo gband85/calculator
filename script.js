@@ -92,6 +92,7 @@ let divideButton = document.querySelector("#divide");
 let equalsButton = document.getElementById("equals");
 let clearButton = document.getElementById("clear");
 let display = document.getElementById("display");
+let decimalButton = document.querySelector("#decimal");
 // Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
 
 //add event listeners to take input from buttons
@@ -120,6 +121,14 @@ multiplyButton.addEventListener("click", function () {
 clearButton.addEventListener("click", function () {
   clearDisplay();
 });
+
+decimalButton.addEventListener("click", function () {
+ //if display.textContent !contains "."
+  if (!display.textContent) {
+display.textContent+=decimalButton.value;
+  }
+  
+})
 
 equalsButton.addEventListener("click", function () {
   if (calc.firstOperand && calc.operator && calc.secondOperand) {
