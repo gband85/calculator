@@ -1,5 +1,3 @@
-let decimal = document.querySelector("#decimal");
-
 let plus_minus = document.getElementById("plus_minus");
 
 //create object to hold calculation data
@@ -122,13 +120,23 @@ clearButton.addEventListener("click", function () {
   clearDisplay();
 });
 
-decimalButton.addEventListener("click", function () {
- //if display.textContent !contains "."
-  if (!display.textContent) {
-display.textContent+=decimalButton.value;
-  }
-  
-})
+// decimalButton.addEventListener("click", function () {
+//  //if display.textContent !contains "."
+//  if (display.textContent=="0") {
+//    display.textContent="0.";
+//    //calc.firstOperand
+//  }
+
+//   if (display.textContent.includes(decimalButton.value)) {
+//      if (calc.operator ) {
+//       display.textContent="0."
+//     }
+
+//   }
+// else {
+//   display.textContent+="."
+// }
+// })
 
 equalsButton.addEventListener("click", function () {
   if (calc.firstOperand && calc.operator && calc.secondOperand) {
@@ -152,6 +160,10 @@ function inputNumber(buttonValue) {
   else if (calc.operator) {
     //  and if secondOperand does not exist
     if (!calc.secondOperand) {
+      if (display.textContent=="0.") {
+        display.textContent+=buttonValue;
+
+      }
       //secondOperand equals button value
       calc.secondOperand = buttonValue;
       //display it

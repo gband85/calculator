@@ -9,9 +9,11 @@
     width: 80px;
     height: 80px;
     font-size: large;
+    background-color: gray;
+    color: white;
   }
   .operator {
-    background-color: dodgerblue;
+    background-color: teal;
   }
   #displayScreen {
     color: white;
@@ -43,7 +45,7 @@
   
   #equals {
     width: 80px;
-    background-color: green;
+    background-color: orangered;
     grid-row: 4/6;
     grid-column: 4/5;
   }
@@ -54,6 +56,9 @@
   
   .btn-wide {
     width: 160px;
+  }
+  .btn-xwide {
+    width: 240px;
   }
   
   #container {
@@ -67,7 +72,7 @@
   
   #clear {
     grid-column: 1/3;
-    background-color: red;
+    background-color: orangered;
   }
   
   #zero {
