@@ -137,10 +137,12 @@ display.textContent = calc.displayValue;
 })
 
 equalsButton.addEventListener("click", function () {
+  if (calc.firstOperand) {
 calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
 calc.firstOperand=calc.displayValue;
 display.textContent = calc.displayValue;
 calc.displayValue="";
+  }
 });
 
 function inputNumber(buttonValue) {
@@ -157,10 +159,17 @@ display.textContent=calc.displayValue;
 }
 
 function inputOperator(buttonValue) {
-  calc.firstOperand=calc.displayValue
-calc.displayValue = "";
 
+if (calc.operator) {
+  calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
+  display.textContent=calc.displayValue;
+calc.firstOperand=calc.displayValue;
+}
+else {
+calc.firstOperand=calc.displayValue;
+}
 calc.operator = buttonValue;  
+calc.displayValue = "";
 }
 
   // Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
