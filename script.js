@@ -5,7 +5,8 @@ const calc = {
   firstOperand: "",
   secondOperand: "",
   operator: "",
-  equalsPressed: false
+  equalsPressed: false,
+  displayValue: ""
 };
 
 //add function to process clear button
@@ -15,6 +16,7 @@ function clearDisplay() {
   calc.secondOperand = ""
   calc.operator = "";
   calc.equalsPressed = false;
+  calc.displayValue="";
 }
 
 //execute clear and update display functions on page load
@@ -69,14 +71,11 @@ else {
       result = divide(firstOperand, secondOperand);
       break;
   }
-    //display result
-  display.textContent = Math.round((result + Number.EPSILON) * 1000000) / 1000000;
-  calc.firstOperand = Math.round((result + Number.EPSILON) * 1000000) / 1000000;
+    //return result
+    return Math.round((result + Number.EPSILON) * 1000000) / 1000000;
+
 }
 
-  //clear second operand
-  calc.secondOperand = "";
-  calc.operator = "";
 }
 // Create a basic HTML calculator with buttons for each digit, each of the above functions and an “Equals” key.
 // Do not worry about wiring up the JS just yet.
@@ -120,81 +119,48 @@ clearButton.addEventListener("click", function () {
   clearDisplay();
 });
 
-// decimalButton.addEventListener("click", function () {
-//  //if display.textContent !contains "."
-//  if (display.textContent=="0") {
-//    display.textContent="0.";
-//    //calc.firstOperand
-//  }
+decimalButton.addEventListener("click", function () {
+ 
+ if (display.textContent=="0") {
+   calc.displayValue=display.textContent+decimalButton.value;
+   
+ }
 
-//   if (display.textContent.includes(decimalButton.value)) {
-//      if (calc.operator ) {
-//       display.textContent="0."
-//     }
-
-//   }
-// else {
-//   display.textContent+="."
-// }
-// })
+ 
+else {
+  if (!calc.displayValue.includes(decimalButton.value)) {
+    calc.displayValue+=decimalButton.value;
+  }
+  
+}
+display.textContent = calc.displayValue;
+})
 
 equalsButton.addEventListener("click", function () {
-  if (calc.firstOperand && calc.operator && calc.secondOperand) {
-    operate(calc.firstOperand, calc.operator, calc.secondOperand);
-  }
-  if (calc.firstOperand && calc.operator && !calc.secondOperand && display.textContent) {
-    calc.secondOperand = display.textContent;
-    operate(calc.firstOperand, calc.operator, calc.secondOperand);
-  }
+calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
+calc.firstOperand=calc.displayValue;
+display.textContent = calc.displayValue;
+calc.displayValue="";
 });
 
 function inputNumber(buttonValue) {
   //if display is zeroed out
-  if (display.textContent == "0") {
-    // save entered value
-    calc.firstOperand = buttonValue;
+  if (display.textContent === "0") {
     //overwrite display
-    display.textContent = buttonValue;
+    calc.displayValue = buttonValue;
   }
-  //otherwise, if operator has been pressed
-  else if (calc.operator) {
-    //  and if secondOperand does not exist
-    if (!calc.secondOperand) {
-      if (display.textContent=="0.") {
-        display.textContent+=buttonValue;
 
-      }
-      //secondOperand equals button value
-      calc.secondOperand = buttonValue;
-      //display it
-      display.textContent = buttonValue;
-    }
-    else {
-      calc.secondOperand += buttonValue;
-      display.textContent += buttonValue;
-      return;
-    }
-  }
-  else {
-    //otherwise, concatenate value
-    calc.firstOperand += buttonValue;
-    display.textContent += buttonValue;
-  }
+else {
+  calc.displayValue+=buttonValue;
+}
+display.textContent=calc.displayValue;
 }
 
 function inputOperator(buttonValue) {
+  calc.firstOperand=calc.displayValue
+calc.displayValue = "";
 
-  if (display.textContent == "0") {
-  calc.firstOperand=display.textContent
-  }
-  if (calc.firstOperand) {
-    if (calc.operator) {
-      if (calc.secondOperand) {
-        operate(calc.firstOperand, calc.operator, calc.secondOperand);
-      }
-    }
-    calc.operator = buttonValue;
-  }
+calc.operator = buttonValue;  
 }
 
   // Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
