@@ -56,7 +56,8 @@ function divide(firstOperand, secondOperand) {
 }
 // Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(firstOperand, operator, secondOperand) {
-  let result,answer
+  let result,answer;
+  // Display a snarky error message if the user tries to divide by 0
     if (operator=="/" && secondOperand=="0") {
 answer = "U wot m8?";
   }
@@ -81,6 +82,7 @@ else {
       break;
   }
     //return result
+    //round answers with long decimals so that they don’t overflow the screen.
     answer = (Math.round((result + Number.EPSILON) * 100000000000000) / 100000000000000).toString();
   
     if (answer.length>15) {
@@ -148,6 +150,7 @@ clearButton.addEventListener("click", function () {
   clearDisplay();
 });
 
+  // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 decimalButton.addEventListener("click", function () {
   if (display.textContent=="0") {
    calc.displayValue=display.textContent+decimalButton.value;   
@@ -169,6 +172,7 @@ calc.displayValue="";
   }
 });
 
+  // EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
 backspaceButton.addEventListener("click", function() {
    if (calc.displayValue.length ===1) {
     calc.displayValue="0"
@@ -193,8 +197,4 @@ window.onload = function () {
   // You should round answers with long decimals so that they don’t overflow the screen.
   // Pressing = before entering all of the numbers or an operator could cause problems!
   // Pressing “clear” should wipe out any existing data.. make sure the user is really starting fresh after pressing “clear”
-  // Display a snarky error message if the user tries to divide by 0… don’t let it crash your calculator!
-  // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
-  // EXTRA CREDIT: Make it look nice! This can be a good portfolio project… but not if it’s UGLY. At least make the operations a different color from the keypad buttons.
-  // EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
   // EXTRA CREDIT: Add keyboard support!
