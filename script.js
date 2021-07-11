@@ -8,10 +8,7 @@ const calc = {
 // Create a basic HTML calculator with buttons for each digit, each of the above functions and an “Equals” key.
 // Add a “clear” button.
 let numberButtons = document.querySelectorAll(".btn.number");
-let multiplyButton = document.querySelector("#multiply");
-let addButton = document.querySelector("#add");
-let subtractButton = document.querySelector("#subtract");
-let divideButton = document.querySelector("#divide");
+let operatorButtons = document.querySelectorAll(".btn.operator");
 let equalsButton = document.getElementById("equals");
 let clearButton = document.getElementById("clear");
 let backspaceButton = document.getElementById("backspace");
@@ -136,21 +133,11 @@ numberButtons.forEach(numberButton => {
   });
 });
 
-addButton.addEventListener("click", function () {
-  inputOperator(addButton.value);
-});
-
-subtractButton.addEventListener("click", function () {
-  inputOperator(subtractButton.value);
-});
-
-divideButton.addEventListener("click", function () {
-  inputOperator(divideButton.value);
-});
-
-multiplyButton.addEventListener("click", function () {
-  inputOperator(multiplyButton.value);
-});
+operatorButtons.forEach(operatorButton => {
+  operatorButton.addEventListener("click", function () {
+inputOperator(operatorButton.value);
+  })
+})
 
 clearButton.addEventListener("click", function () {
   clearDisplay();
