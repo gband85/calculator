@@ -1,5 +1,3 @@
-let backspace = document.getElementById("plus_minus");
-
 //create object to hold calculation data
 const calc = {
   firstOperand: "",
@@ -18,8 +16,10 @@ let subtractButton = document.querySelector("#subtract");
 let divideButton = document.querySelector("#divide");
 let equalsButton = document.getElementById("equals");
 let clearButton = document.getElementById("clear");
-let display = document.getElementById("display");
+let backspaceButton = document.getElementById("plus_minus");
+
 let decimalButton = document.querySelector("#decimal");
+let display = document.getElementById("display");
 
 //add function to process clear button
 function clearDisplay() {

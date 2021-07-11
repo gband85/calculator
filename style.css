@@ -46,8 +46,10 @@
   #equals {
     width: 80px;
     background-color: orangered;
-    grid-row: 4/6;
-    grid-column: 4/5;
+  }
+
+  #backspace {
+    background-color: orangered;
   }
   
   .btn-tall {
