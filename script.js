@@ -57,8 +57,8 @@ function divide(firstOperand, secondOperand) {
 // Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(firstOperand, operator, secondOperand) {
   let result,answer
-    if (firstOperand=="0" && operator=="/" && secondOperand=="0") {
-answer = "U wot mate?";
+    if (operator=="/" && secondOperand=="0") {
+answer = "U wot m8?";
   }
 else {
   //calculate the result
