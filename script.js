@@ -102,6 +102,18 @@ function inputNumber(buttonValue) {
   updateDisplay(calc.displayValue);
 }
 
+function inputDecimal(buttonValue) {
+  if (display.textContent == "0") {
+    calc.displayValue = display.textContent + buttonValue;
+  }
+  else {
+    if (!calc.displayValue.includes(buttonValue) && calc.displayValue.length !== 15) {
+      calc.displayValue += buttonValue;
+    }
+  }
+  updateDisplay(calc.displayValue);
+}
+
 function inputOperator(buttonValue) {
 
   if (calc.operator) {
@@ -146,15 +158,7 @@ clearButton.addEventListener("click", function () {
 
 // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 decimalButton.addEventListener("click", function () {
-  if (display.textContent == "0") {
-    calc.displayValue = display.textContent + decimalButton.value;
-  }
-  else {
-    if (!calc.displayValue.includes(decimalButton.value) && calc.displayValue.length !== 15) {
-      calc.displayValue += decimalButton.value;
-    }
-  }
-  updateDisplay(calc.displayValue);
+inputDecimal(decimalButton.value);
 })
 
 equalsButton.addEventListener("click", function () {
