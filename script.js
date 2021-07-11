@@ -1,9 +1,7 @@
 //create object to hold calculation data
 const calc = {
   firstOperand: "",
-  secondOperand: "",
   operator: "",
-  equalsPressed: false,
   displayValue: ""
 };
 
@@ -24,14 +22,12 @@ let display = document.getElementById("display");
 //add function to process clear button
 function clearDisplay() {
   calc.firstOperand = "";
-  calc.secondOperand = ""
   calc.operator = "";
-  calc.displayValue="0";
+  calc.displayValue = "0";
   updateDisplay(calc.displayValue);
 }
 
 function updateDisplay(displayValue) {
-
   display.textContent = displayValue;
 }
 
@@ -56,41 +52,40 @@ function divide(firstOperand, secondOperand) {
 }
 // Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(firstOperand, operator, secondOperand) {
-  let result,answer;
+  let result, answer;
   // Display a snarky error message if the user tries to divide by 0
-    if (operator=="/" && secondOperand=="0") {
-answer = "U wot m8?";
+  if (operator == "/" && secondOperand == "0") {
+    answer = "U wot m8?";
   }
-else {
-  //calculate the result
-  switch (operator) {
-    case "+":
-      //perform operation
-      result = add(firstOperand, secondOperand);
-      break;
-    case "-":
-      //perform operation
-      result = subtract(firstOperand, secondOperand);
-      break;
-    case "*":
-      //perform operation
-      result = multiply(firstOperand, secondOperand);
-      break;
-    case "/":
-      //perform operation
-      result = divide(firstOperand, secondOperand);
-      break;
-  }
+  else {
+    //calculate the result
+    switch (operator) {
+      case "+":
+        //perform operation
+        result = add(firstOperand, secondOperand);
+        break;
+      case "-":
+        //perform operation
+        result = subtract(firstOperand, secondOperand);
+        break;
+      case "*":
+        //perform operation
+        result = multiply(firstOperand, secondOperand);
+        break;
+      case "/":
+        //perform operation
+        result = divide(firstOperand, secondOperand);
+        break;
+    }
     //return result
     //round answers with long decimals so that they don’t overflow the screen.
     answer = (Math.round((result + Number.EPSILON) * 100000000000000) / 100000000000000).toString();
-  
-    if (answer.length>15) {
-     answer = answer.slice(0,14);
+
+    if (answer.length > 15) {
+      answer = answer.slice(0, 14);
     }
-    
-}
-return answer;
+  }
+  return answer;
 }
 
 function inputNumber(buttonValue) {
@@ -99,27 +94,26 @@ function inputNumber(buttonValue) {
     //overwrite display
     calc.displayValue = buttonValue;
   }
-
-else {
-  if (calc.displayValue.length!==15) {
-  calc.displayValue+=buttonValue;
+  else {
+    if (calc.displayValue.length !== 15) {
+      calc.displayValue += buttonValue;
+    }
   }
-}
-updateDisplay(calc.displayValue);
+  updateDisplay(calc.displayValue);
 }
 
 function inputOperator(buttonValue) {
 
-if (calc.operator) {
-calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
-calc.firstOperand=calc.displayValue;
-updateDisplay(calc.displayValue);
-}
-else {
-calc.firstOperand=calc.displayValue;
-}
-calc.operator = buttonValue;  
-calc.displayValue = "";
+  if (calc.operator) {
+    calc.displayValue = operate(calc.firstOperand, calc.operator, calc.displayValue);
+    calc.firstOperand = calc.displayValue;
+    updateDisplay(calc.displayValue);
+  }
+  else {
+    calc.firstOperand = calc.displayValue;
+  }
+  calc.operator = buttonValue;
+  calc.displayValue = "";
 }
 
 // Create the functions that populate the display when you click the number button
@@ -150,35 +144,35 @@ clearButton.addEventListener("click", function () {
   clearDisplay();
 });
 
-  // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
+// EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 decimalButton.addEventListener("click", function () {
-  if (display.textContent=="0") {
-   calc.displayValue=display.textContent+decimalButton.value;   
- } 
-else {
-  if (!calc.displayValue.includes(decimalButton.value) && calc.displayValue.length!==15) {
-    calc.displayValue+=decimalButton.value;
-  }  
-}
-updateDisplay(calc.displayValue);
+  if (display.textContent == "0") {
+    calc.displayValue = display.textContent + decimalButton.value;
+  }
+  else {
+    if (!calc.displayValue.includes(decimalButton.value) && calc.displayValue.length !== 15) {
+      calc.displayValue += decimalButton.value;
+    }
+  }
+  updateDisplay(calc.displayValue);
 })
 
 equalsButton.addEventListener("click", function () {
   if (calc.firstOperand) {
-calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
-calc.firstOperand=calc.displayValue;
-updateDisplay(calc.displayValue);
-calc.displayValue="";
+    calc.displayValue = operate(calc.firstOperand, calc.operator, calc.displayValue);
+    calc.firstOperand = calc.displayValue;
+    updateDisplay(calc.displayValue);
+    calc.displayValue = "";
   }
 });
 
-  // EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
-backspaceButton.addEventListener("click", function() {
-   if (calc.displayValue.length ===1) {
-    calc.displayValue="0"
-  } 
+// EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
+backspaceButton.addEventListener("click", function () {
+  if (calc.displayValue.length === 1) {
+    calc.displayValue = "0"
+  }
   else {
-  calc.displayValue=calc.displayValue.slice(0,-1);
+    calc.displayValue = calc.displayValue.slice(0, -1);
   }
   updateDisplay(calc.displayValue);
 });
@@ -186,7 +180,7 @@ backspaceButton.addEventListener("click", function() {
 //execute clear and update display functions on page load
 window.onload = function () {
   clearDisplay();
-// updateDisplay(calc.displayValue)
+  // updateDisplay(calc.displayValue)
 };
 
   // Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
