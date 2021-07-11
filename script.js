@@ -30,6 +30,11 @@ function clearDisplay() {
   calc.displayValue="";
 }
 
+function updateDisplay(displayValue) {
+
+  display.textContent = displayValue;
+}
+
 // Here are some use cases (abilities your project needs to have):
 
 //start by creating functions for the following items.
@@ -51,8 +56,9 @@ function divide(firstOperand, secondOperand) {
 }
 // Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(firstOperand, operator, secondOperand) {
+  let result,answer
     if (firstOperand=="0" && operator=="/" && secondOperand=="0") {
-return "U wot mate?";
+answer = "U wot mate?";
   }
 else {
   //calculate the result
@@ -75,8 +81,14 @@ else {
       break;
   }
     //return result
-    return Math.round((result + Number.EPSILON) * 1000000) / 1000000;
+    answer = (Math.round((result + Number.EPSILON) * 100000000000000) / 100000000000000).toString();
+  
+    if (answer.length>15) {
+     answer = answer.slice(0,14);
+    }
+    
 }
+return answer;
 }
 
 function inputNumber(buttonValue) {
@@ -87,17 +99,19 @@ function inputNumber(buttonValue) {
   }
 
 else {
+  if (calc.displayValue.length!==15) {
   calc.displayValue+=buttonValue;
+  }
 }
-display.textContent=calc.displayValue;
+updateDisplay(calc.displayValue);
 }
 
 function inputOperator(buttonValue) {
 
 if (calc.operator) {
-  calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
-  display.textContent=calc.displayValue;
+calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
 calc.firstOperand=calc.displayValue;
+updateDisplay(calc.displayValue);
 }
 else {
 calc.firstOperand=calc.displayValue;
@@ -139,18 +153,18 @@ decimalButton.addEventListener("click", function () {
    calc.displayValue=display.textContent+decimalButton.value;   
  } 
 else {
-  if (!calc.displayValue.includes(decimalButton.value)) {
+  if (!calc.displayValue.includes(decimalButton.value) && calc.displayValue.length!==15) {
     calc.displayValue+=decimalButton.value;
   }  
 }
-display.textContent = calc.displayValue;
+updateDisplay(calc.displayValue);
 })
 
 equalsButton.addEventListener("click", function () {
   if (calc.firstOperand) {
 calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
 calc.firstOperand=calc.displayValue;
-display.textContent = calc.displayValue;
+updateDisplay(calc.displayValue);
 calc.displayValue="";
   }
 });
