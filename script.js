@@ -16,18 +16,18 @@ let subtractButton = document.querySelector("#subtract");
 let divideButton = document.querySelector("#divide");
 let equalsButton = document.getElementById("equals");
 let clearButton = document.getElementById("clear");
-let backspaceButton = document.getElementById("plus_minus");
+let backspaceButton = document.getElementById("backspace");
 
 let decimalButton = document.querySelector("#decimal");
 let display = document.getElementById("display");
 
 //add function to process clear button
 function clearDisplay() {
-  display.textContent = "0"
   calc.firstOperand = "";
   calc.secondOperand = ""
   calc.operator = "";
-  calc.displayValue="";
+  calc.displayValue="0";
+  updateDisplay(calc.displayValue);
 }
 
 function updateDisplay(displayValue) {
@@ -169,10 +169,20 @@ calc.displayValue="";
   }
 });
 
+backspaceButton.addEventListener("click", function() {
+   if (calc.displayValue.length ===1) {
+    calc.displayValue="0"
+  } 
+  else {
+  calc.displayValue=calc.displayValue.slice(0,-1);
+  }
+  updateDisplay(calc.displayValue);
+});
+
 //execute clear and update display functions on page load
 window.onload = function () {
   clearDisplay();
-
+// updateDisplay(calc.displayValue)
 };
 
   // Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
