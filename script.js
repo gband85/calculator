@@ -1,4 +1,4 @@
-let plus_minus = document.getElementById("plus_minus");
+let backspace = document.getElementById("plus_minus");
 
 //create object to hold calculation data
 const calc = {
@@ -9,21 +9,27 @@ const calc = {
   displayValue: ""
 };
 
+// Create a basic HTML calculator with buttons for each digit, each of the above functions and an “Equals” key.
+// Add a “clear” button.
+let numberButtons = document.querySelectorAll(".btn.number");
+let multiplyButton = document.querySelector("#multiply");
+let addButton = document.querySelector("#add");
+let subtractButton = document.querySelector("#subtract");
+let divideButton = document.querySelector("#divide");
+let equalsButton = document.getElementById("equals");
+let clearButton = document.getElementById("clear");
+let display = document.getElementById("display");
+let decimalButton = document.querySelector("#decimal");
+
 //add function to process clear button
 function clearDisplay() {
   display.textContent = "0"
   calc.firstOperand = "";
   calc.secondOperand = ""
   calc.operator = "";
-  calc.equalsPressed = false;
   calc.displayValue="";
 }
 
-//execute clear and update display functions on page load
-window.onload = function () {
-  clearDisplay();
-
-};
 // Here are some use cases (abilities your project needs to have):
 
 //start by creating functions for the following items.
@@ -45,11 +51,8 @@ function divide(firstOperand, secondOperand) {
 }
 // Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(firstOperand, operator, secondOperand) {
-  let result;
-  if (firstOperand=="0" && operator=="/" && secondOperand=="0") {
-    result="U wot mate?";
-    display.textContent=result;
-
+    if (firstOperand=="0" && operator=="/" && secondOperand=="0") {
+return "U wot mate?";
   }
 else {
   //calculate the result
@@ -73,77 +76,8 @@ else {
   }
     //return result
     return Math.round((result + Number.EPSILON) * 1000000) / 1000000;
-
 }
-
 }
-// Create a basic HTML calculator with buttons for each digit, each of the above functions and an “Equals” key.
-// Do not worry about wiring up the JS just yet.
-// There should also be a display for the calculator, go ahead and fill it with some dummy numbers so you can get it looking right.
-// Add a “clear” button.
-let numberButtons = document.querySelectorAll(".btn.number");
-let multiplyButton = document.querySelector("#multiply");
-let addButton = document.querySelector("#add");
-let subtractButton = document.querySelector("#subtract");
-let divideButton = document.querySelector("#divide");
-let equalsButton = document.getElementById("equals");
-let clearButton = document.getElementById("clear");
-let display = document.getElementById("display");
-let decimalButton = document.querySelector("#decimal");
-// Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
-
-//add event listeners to take input from buttons
-numberButtons.forEach(numberButton => {
-  numberButton.addEventListener("click", function () {
-    inputNumber(numberButton.value);
-  });
-});
-
-addButton.addEventListener("click", function () {
-  inputOperator(addButton.value);
-});
-
-subtractButton.addEventListener("click", function () {
-  inputOperator(subtractButton.value);
-});
-
-divideButton.addEventListener("click", function () {
-  inputOperator(divideButton.value);
-});
-
-multiplyButton.addEventListener("click", function () {
-  inputOperator(multiplyButton.value);
-});
-
-clearButton.addEventListener("click", function () {
-  clearDisplay();
-});
-
-decimalButton.addEventListener("click", function () {
- 
- if (display.textContent=="0") {
-   calc.displayValue=display.textContent+decimalButton.value;
-   
- }
-
- 
-else {
-  if (!calc.displayValue.includes(decimalButton.value)) {
-    calc.displayValue+=decimalButton.value;
-  }
-  
-}
-display.textContent = calc.displayValue;
-})
-
-equalsButton.addEventListener("click", function () {
-  if (calc.firstOperand) {
-calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
-calc.firstOperand=calc.displayValue;
-display.textContent = calc.displayValue;
-calc.displayValue="";
-  }
-});
 
 function inputNumber(buttonValue) {
   //if display is zeroed out
@@ -171,6 +105,61 @@ calc.firstOperand=calc.displayValue;
 calc.operator = buttonValue;  
 calc.displayValue = "";
 }
+
+// Create the functions that populate the display when you click the number button
+
+numberButtons.forEach(numberButton => {
+  numberButton.addEventListener("click", function () {
+    inputNumber(numberButton.value);
+  });
+});
+
+addButton.addEventListener("click", function () {
+  inputOperator(addButton.value);
+});
+
+subtractButton.addEventListener("click", function () {
+  inputOperator(subtractButton.value);
+});
+
+divideButton.addEventListener("click", function () {
+  inputOperator(divideButton.value);
+});
+
+multiplyButton.addEventListener("click", function () {
+  inputOperator(multiplyButton.value);
+});
+
+clearButton.addEventListener("click", function () {
+  clearDisplay();
+});
+
+decimalButton.addEventListener("click", function () {
+  if (display.textContent=="0") {
+   calc.displayValue=display.textContent+decimalButton.value;   
+ } 
+else {
+  if (!calc.displayValue.includes(decimalButton.value)) {
+    calc.displayValue+=decimalButton.value;
+  }  
+}
+display.textContent = calc.displayValue;
+})
+
+equalsButton.addEventListener("click", function () {
+  if (calc.firstOperand) {
+calc.displayValue = operate(calc.firstOperand,calc.operator,calc.displayValue);
+calc.firstOperand=calc.displayValue;
+display.textContent = calc.displayValue;
+calc.displayValue="";
+  }
+});
+
+//execute clear and update display functions on page load
+window.onload = function () {
+  clearDisplay();
+
+};
 
   // Make the calculator work! You’ll need to store the first number that is input into the calculator when a user presses an operator, and also save which operation has been chosen and then operate() on them when the user presses the “=” key.
   // You should already have the code that can populate the display, so once operate() has been called, update the display with the ‘solution’ to the operation.
