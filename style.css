@@ -15,23 +15,15 @@
   .operator {
     background-color: teal;
   }
-  #displayScreen {
-    color: white;
-    height: 45px;
-    width: 320px;
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    text-align: right;
-    font-family: "Digital-7 Mono";
-    padding: 5px;
-    align-items: flex-end;
-  }
   
   #display {
     color: white;
-    height: 40px;
+    background-color: black;
+    font-family: "Digital-7 Mono";
+    height: 45px;
     width: 320px;
+    padding-right: 10px;
+    padding-top: 10px;
     font-size: 40px;
     text-align: right;
     align-items: flex-end;
