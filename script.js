@@ -125,6 +125,25 @@ function inputOperator(buttonValue) {
   calc.displayValue = "";
 }
 
+function inputEquals() {
+  if (calc.firstOperand) {
+    calc.displayValue = operate(calc.firstOperand, calc.operator, calc.displayValue);
+    calc.firstOperand = calc.displayValue;
+    updateDisplay(calc.displayValue);
+    calc.displayValue = "";
+  }
+}
+
+function inputBackspace() {
+  if (calc.displayValue.length === 1) {
+    calc.displayValue = "0"
+  }
+  else {
+    calc.displayValue = calc.displayValue.slice(0, -1);
+  }
+  updateDisplay(calc.displayValue);
+}
+
 // Create the functions that populate the display when you click the number button
 
 numberButtons.forEach(numberButton => {
@@ -136,8 +155,8 @@ numberButtons.forEach(numberButton => {
 operatorButtons.forEach(operatorButton => {
   operatorButton.addEventListener("click", function () {
 inputOperator(operatorButton.value);
-  })
-})
+  });
+});
 
 clearButton.addEventListener("click", function () {
   clearDisplay();
@@ -149,23 +168,12 @@ inputDecimal(decimalButton.value);
 })
 
 equalsButton.addEventListener("click", function () {
-  if (calc.firstOperand) {
-    calc.displayValue = operate(calc.firstOperand, calc.operator, calc.displayValue);
-    calc.firstOperand = calc.displayValue;
-    updateDisplay(calc.displayValue);
-    calc.displayValue = "";
-  }
+inputEquals();
 });
 
 // EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
 backspaceButton.addEventListener("click", function () {
-  if (calc.displayValue.length === 1) {
-    calc.displayValue = "0"
-  }
-  else {
-    calc.displayValue = calc.displayValue.slice(0, -1);
-  }
-  updateDisplay(calc.displayValue);
+inputBackspace();
 });
 
 //execute clear and update display functions on page load
