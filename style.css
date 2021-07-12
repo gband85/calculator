@@ -15,7 +15,16 @@
   .operator {
     background-color: teal;
   }
-  
+  a {
+    text-decoration: none;
+  }
+  a:visited {
+    color: black;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
   #display {
     color: white;
     background-color: black;
