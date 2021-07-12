@@ -113,7 +113,7 @@ function inputDecimal(buttonValue) {
 
 function inputOperator(buttonValue) {
 
-  if (calc.operator) {
+  if (calc.operator && calc.displayValue) {
     calc.displayValue = operate(calc.firstOperand, calc.operator, calc.displayValue);
     calc.firstOperand = calc.displayValue;
     updateDisplay(calc.displayValue);
@@ -126,11 +126,11 @@ function inputOperator(buttonValue) {
 }
 
 function inputEquals() {
-  if (calc.firstOperand) {
+  if (calc.firstOperand && calc.displayValue) {
     calc.displayValue = operate(calc.firstOperand, calc.operator, calc.displayValue);
-    calc.firstOperand = calc.displayValue;
+    calc.firstOperand = "";
+    calc.operator = "";
     updateDisplay(calc.displayValue);
-    calc.displayValue = "";
   }
 }
 
@@ -154,7 +154,7 @@ numberButtons.forEach(numberButton => {
 
 operatorButtons.forEach(operatorButton => {
   operatorButton.addEventListener("click", function () {
-inputOperator(operatorButton.value);
+    inputOperator(operatorButton.value);
   });
 });
 
@@ -164,16 +164,16 @@ clearButton.addEventListener("click", function () {
 
 // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 decimalButton.addEventListener("click", function () {
-inputDecimal(decimalButton.value);
+  inputDecimal(decimalButton.value);
 })
 
 equalsButton.addEventListener("click", function () {
-inputEquals();
+  inputEquals();
 });
 
 // EXTRA CREDIT: Add a “backspace” button, so the user can undo if they click the wrong number.
 backspaceButton.addEventListener("click", function () {
-inputBackspace();
+  inputBackspace();
 });
 
 //execute clear and update display functions on page load
