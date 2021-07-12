@@ -165,7 +165,7 @@ clearButton.addEventListener("click", function () {
 // EXTRA CREDIT: Users can get floating point numbers if they do the math required to get one, but they can’t type them in yet. Add a . button and let users input decimals! Make sure you don’t let them type more than one though: 12.3.56.5. It is hard to do math on these numbers. (disable the decimal button if there’s already one in the display)
 decimalButton.addEventListener("click", function () {
   inputDecimal(decimalButton.value);
-})
+});
 
 equalsButton.addEventListener("click", function () {
   inputEquals();
@@ -175,6 +175,27 @@ equalsButton.addEventListener("click", function () {
 backspaceButton.addEventListener("click", function () {
   inputBackspace();
 });
+
+document.addEventListener("keydown", function (e) {
+  if (/[0-9]/.test(e.key)) {
+    inputNumber(e.key);
+  }
+  if (/[\+\-\*\/]/.test(e.key)) {
+    inputOperator(e.key);
+  }
+  if (e.key === ".") {
+    inputDecimal(e.key);
+  }
+  if (e.key === "=") {
+    inputEquals();
+  }
+  if (e.key === "Delete") {
+    clearDisplay();
+  }
+  if (e.key === "Backspace") {
+    inputBackspace();
+  }
+})
 
 //execute clear and update display functions on page load
 window.onload = function () {
